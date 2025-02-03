@@ -8,11 +8,10 @@ const Search = () => {
 
 let onOpen=()=>{
   setOpen(true);
-  console.log('clicked');
-  
 }
   return (
     <>
+    <Modal open={open} setOpen={setOpen}/>
     <div className='flex justify-center'>
       <div className='w-[360px] h-12 mt-2 flex'>
 
@@ -34,7 +33,7 @@ let onOpen=()=>{
     </div>
     
     <ContactCard />
-    <Modal open={open} setOpen={setOpen}/>
+    
     </>
   )
 }
