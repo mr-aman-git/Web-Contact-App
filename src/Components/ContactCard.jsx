@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import {db} from '../config/Firebase';
 
+
 const ContactCard = () => {
 
   let [contact, setContact]= useState([]);
