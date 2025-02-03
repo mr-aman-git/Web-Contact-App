@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore'
 import {db} from '../config/Firebase';
 
 
-const Modal = ({open, setOpen}) => {
+const Modal = ({open, setOpen, isUpdate}) => {
     let[name, setName]= useState('');
     let[email, setEmail]= useState('');
 
@@ -61,7 +61,8 @@ const Modal = ({open, setOpen}) => {
                                         </div>
 
                                         <div className='flex ml-4 mt-3'>
-                                            <button className='bg-blue-500 w-30 h-9 rounded-md font-medium text-white cursor-pointer'>Add Contact</button>
+                                            <button className='bg-blue-500 w-30 h-9 rounded-md font-medium text-white cursor-pointer'>
+                                                {isUpdate ? "Add" : "Update" } Contact</button>
                                         </div>
                         
                                 </form>

@@ -3,7 +3,6 @@ import ContactCard from './ContactCard'
 import Modal from './Modal'
 
 const Search = () => {
-
   let [open, setOpen]= useState(false);
 
 let onOpen=()=>{
@@ -11,7 +10,7 @@ let onOpen=()=>{
 }
   return (
     <>
-    <Modal open={open} setOpen={setOpen}/>
+    
     <div className='flex justify-center'>
       <div className='w-[360px] h-12 mt-2 flex'>
 
@@ -32,7 +31,7 @@ let onOpen=()=>{
       </div>
     </div>
     
-    <ContactCard />
+    <ContactCard open={open} setOpen={setOpen} />
     
     </>
   )

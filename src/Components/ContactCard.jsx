@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore'
 import {db} from '../config/Firebase';
+import Modal from './Modal';
 
 
-const ContactCard = () => {
-
+const ContactCard = ({open, setOpen,}) => {
+  let editOpen=()=>{
+    setOpen(true);
+  }
   let [contact, setContact]= useState([]);
 
   useEffect (()=>{
     let getContact= async()=>{
       try {
-
         let contactData= collection(db, "contact");
         let dataSnapShot= await getDocs(contactData);
         let outputData= dataSnapShot.docs.map((doc)=>{
@@ -28,10 +30,22 @@ const ContactCard = () => {
     }
 
     getContact();
-  },[])
+  },[]);
+
+  let deleteContact= async(id)=>{
+    try {
+      await deleteDoc(doc(db, "contact", id));
+      console.log("delete");
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
 
   return (
     <>
+    <Modal open={open} setOpen={setOpen} isUpdate/>
     <div className=''>
       <div className='flex justify-center flex-col mt-2 '>
         {
@@ -46,8 +60,9 @@ const ContactCard = () => {
               </div>
 
               <div className='w-[80px] flex justify-end gap-4 pt-[2px] '>
-                <div className='text-[25px]'><i class="ri-edit-box-line cursor-pointer"></i></div>
-                <div className='text-[25px] pr-1 text-purple-700 cursor-pointer'><i class="ri-delete-bin-7-fill"></i></div>
+                <div className='text-[25px]'><i class="ri-edit-box-line cursor-pointer" onClick={editOpen}></i></div>
+
+                <div className='text-[25px] pr-1 text-purple-700 cursor-pointer'><i class="ri-delete-bin-7-fill" onClick={()=>deleteContact(contact.id)}></i></div>
               </div>
 
             </div>
