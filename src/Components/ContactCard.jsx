@@ -44,8 +44,8 @@ const ContactCard = () => {
                 <p className='text-[14px] leading-1'>{contact.Email}</p>
               </div>
 
-              <div className='w-[80px] flex justify-end gap-4 pt-[2px] cursor-pointer'>
-                <div className='text-[25px]'><i class="ri-edit-box-line"></i></div>
+              <div className='w-[80px] flex justify-end gap-4 pt-[2px] '>
+                <div className='text-[25px]'><i class="ri-edit-box-line cursor-pointer"></i></div>
                 <div className='text-[25px] pr-1 text-purple-700 cursor-pointer'><i class="ri-delete-bin-7-fill"></i></div>
               </div>
 
