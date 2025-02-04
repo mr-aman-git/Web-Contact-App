@@ -3,6 +3,7 @@ import { collection, deleteDoc, getDocs, doc, onSnapshot } from 'firebase/firest
 import {db} from '../config/Firebase';
 import Modal from './Modal';
 import BlankContact from './BlankContact';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const ContactCard = ({open, setOpen, contact, setContact}) => {
@@ -38,7 +39,10 @@ const ContactCard = ({open, setOpen, contact, setContact}) => {
   let deleteContact= async(id)=>{
     try {
       await deleteDoc(doc(db, "contact", id));
-      console.log("delete");
+
+      toast.error('Contact Delete', {
+        position: "top-center",
+       });
       
     } catch (error) {
       console.log(error);
@@ -75,6 +79,7 @@ const ContactCard = ({open, setOpen, contact, setContact}) => {
         }
       </div>
     </div>
+    <ToastContainer />
     </>
   )
 }

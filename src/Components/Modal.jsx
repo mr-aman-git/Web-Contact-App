@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { createPortal } from 'react-dom';
 import { collection, addDoc } from 'firebase/firestore'
 import {db} from '../config/Firebase';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Modal = ({open, setOpen}) => {
@@ -16,6 +17,10 @@ const Modal = ({open, setOpen}) => {
         event.preventDefault();
         addContact({Name: name, Email: email});
         onClose();
+
+        toast.success('Contact Added', {
+            position: "top-center",
+            });
     }
     let nameHandle=(event)=>{setName(event.target.value);}
     let emailHandle=(event)=>{setEmail(event.target.value);}
@@ -76,6 +81,7 @@ const Modal = ({open, setOpen}) => {
             </div>
         )
     }
+    <ToastContainer />
     </>
  , document.getElementById('modal-root') );
 }
