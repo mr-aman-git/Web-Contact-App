@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { collection, deleteDoc, getDocs, doc, onSnapshot } from 'firebase/firestore'
 import {db} from '../config/Firebase';
 import Modal from './Modal';
+import BlankContact from './BlankContact';
 
 
 const ContactCard = ({open, setOpen, contact, setContact}) => {
   let editOpen=()=>{
     setOpen(true);
   }
-  // let [contact, setContact]= useState([]);
 
   useEffect (()=>{
     let getContact= async()=>{
@@ -53,7 +53,7 @@ const ContactCard = ({open, setOpen, contact, setContact}) => {
     <Modal open={open} setOpen={setOpen} isUpdate/>
     <div className=''>
       <div className='flex justify-center flex-col mt-2 '>
-        {
+        { contact.length <=0 ? (<BlankContact/>) :(
           contact.map((contact)=>(
             <div key={contact.id} className='w-[360px] flex bg-yellow-100 rounded-md mt-2 m-auto'>
 
@@ -71,7 +71,7 @@ const ContactCard = ({open, setOpen, contact, setContact}) => {
               </div>
 
             </div>
-          ))
+           ) ))
         }
       </div>
     </div>

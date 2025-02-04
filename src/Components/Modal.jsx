@@ -54,11 +54,11 @@ const Modal = ({open, setOpen}) => {
                                     
                                         <div className='flex flex-col pl-3'>
                                             <label htmlFor="name" className='font-medium'>Name</label>
-                                            <input type="name" placeholder='Enter Name' onChange={nameHandle} className='border outline-none w-[250px] h-8 rounded-md pl-1.5' />
+                                            <input type="name" placeholder='Enter Name' onChange={nameHandle} required className='border outline-none w-[250px] h-8 rounded-md pl-1.5' />
                                         </div>
                                         <div className='flex flex-col pl-3 mt-1.5'>
                                             <label htmlFor="email" className='font-medium'>Email</label>
-                                            <input type="email" placeholder='Enter Email' onChange={emailHandle} className='border outline-none w-[250px] h-8 rounded-md pl-1.5' />
+                                            <input type="email" placeholder='Enter Email' onChange={emailHandle} required className='border outline-none w-[250px] h-8 rounded-md pl-1.5' />
                                         </div>
 
                                         <div className='flex ml-4 mt-3'>

@@ -13,8 +13,6 @@ let onOpen=()=>{
 let [contact, setContact]= useState([]);
 let filterContact= (event)=>{
   let values= event.target.value;
-  console.log(values);
-  
 
   let contactData= collection(db, "contact");
           onSnapshot(contactData, (snapShot)=>{
@@ -26,14 +24,13 @@ let filterContact= (event)=>{
               };
             })
             
-            
             let filters= outputData.filter(contact => contact.Name.toLowerCase().includes(values.toLowerCase()));
-            console.log(filters);
-            
             setContact(filters);
             return filters;
             
           });
+
+          
 }
   return (
     <>
