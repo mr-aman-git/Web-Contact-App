@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore'
 import {db} from '../config/Firebase';
 
 
-const Modal = ({open, setOpen, isUpdate}) => {
+const Modal = ({open, setOpen}) => {
     let[name, setName]= useState('');
     let[email, setEmail]= useState('');
 
@@ -15,6 +15,7 @@ const Modal = ({open, setOpen, isUpdate}) => {
     let formSubmit=(event)=>{
         event.preventDefault();
         addContact({Name: name, Email: email});
+        onClose();
     }
     let nameHandle=(event)=>{setName(event.target.value);}
     let emailHandle=(event)=>{setEmail(event.target.value);}
@@ -62,7 +63,7 @@ const Modal = ({open, setOpen, isUpdate}) => {
 
                                         <div className='flex ml-4 mt-3'>
                                             <button className='bg-blue-500 w-30 h-9 rounded-md font-medium text-white cursor-pointer'>
-                                                {isUpdate ? "Add" : "Update" } Contact</button>
+                                                Add Contact</button>
                                         </div>
                         
                                 </form>

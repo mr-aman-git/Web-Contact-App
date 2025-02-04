@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore'
+import { collection, deleteDoc, getDocs, doc, onSnapshot } from 'firebase/firestore'
 import {db} from '../config/Firebase';
 import Modal from './Modal';
 
 
-const ContactCard = ({open, setOpen,}) => {
+const ContactCard = ({open, setOpen, contact, setContact}) => {
   let editOpen=()=>{
     setOpen(true);
   }
-  let [contact, setContact]= useState([]);
+  // let [contact, setContact]= useState([]);
 
   useEffect (()=>{
     let getContact= async()=>{
       try {
         let contactData= collection(db, "contact");
-        let dataSnapShot= await getDocs(contactData);
-        let outputData= dataSnapShot.docs.map((doc)=>{
-          return{
-            id: doc.id,
-            ...doc.data(),
-          };
-        });
-        setContact(outputData);
+        onSnapshot(contactData, (snapShot)=>{
 
+          let outputData= snapShot.docs.map((doc)=>{
+            return{
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+          setContact(outputData);
+          return outputData;
+          
+        });
       } catch (error) {
         console.log(error);
         
       }
     }
-
+    
     getContact();
   },[]);
 
@@ -41,7 +44,9 @@ const ContactCard = ({open, setOpen,}) => {
       console.log(error);
       
     }
-  }
+  };
+
+
 
   return (
     <>
