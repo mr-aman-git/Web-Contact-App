@@ -41,9 +41,9 @@ const Modal = ({open, setOpen}) => {
     <>
     {
         open && (
-            <>
+            <div className='absolute h-screen w-screen top-0 z-99 backdrop-blur grid place-items-center'>
                 <div className='flex justify-center'>
-                    <div className='w-[300px] h-[210px] bg-white rounded-md relative z-995'>
+                    <div className='w-[300px] h-[210px] bg-white rounded-md relative z-100'>
 
                         <div className='flex justify-end text-[20px] pr-1'>
                             <i class="ri-close-large-fill cursor-pointer" onClick={onClose}></i>
@@ -72,8 +72,8 @@ const Modal = ({open, setOpen}) => {
 
                     </div>
                 </div>
-                <div className=' absolute h-screen w-screen top-0 z-994 backdrop-blur'onClick={onClose}/>
-            </>
+            
+            </div>
         )
     }
     </>
